@@ -1,12 +1,26 @@
-import { User } from "lucide-react";
+import Image from "next/image";
 
 const board = [
-  { name: "Chairman", role: "Chairman of the Board" },
-  { name: "Vice Chairman", role: "Vice Chairman" },
-  { name: "Director", role: "Director, Finance" },
-  { name: "Director", role: "Director, Engineering" },
-  { name: "Director", role: "Independent Director" },
-  { name: "Company Secretary", role: "Company Secretary" },
+  {
+    name: "Kuber Mani Nepal",
+    role: "Chairman",
+    image: "/board of directors/kuber-mani-nepal.jpg",
+  },
+  {
+    name: "Ramesh Prasad Neupane",
+    role: "Director",
+    image: "/board of directors/ramesh prasad .jpg",
+  },
+  {
+    name: "Saika Bhandari",
+    role: "Director",
+    image: "/board of directors/saika bhandari.jpg",
+  },
+  {
+    name: "Santosh Adhikari",
+    role: "Director",
+    image: "/board of directors/santosh adhikari.jpg",
+  },
 ];
 
 export default function BoardOfDirectorsPage() {
@@ -41,8 +55,14 @@ export default function BoardOfDirectorsPage() {
                 key={index}
                 className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg hover:border-primary-200 transition-all duration-300 text-center group"
               >
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center mx-auto mb-5 group-hover:scale-105 transition-transform">
-                  <User className="w-12 h-12 text-primary-400" />
+                <div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-5 border border-slate-100 group-hover:scale-105 transition-transform">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                    sizes="96px"
+                  />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-1">{member.name}</h3>
                 <p className="text-sm text-primary-600 font-medium">{member.role}</p>

@@ -1,14 +1,11 @@
-import { FileText, Download, Calendar } from "lucide-react";
+import DisclosureFileList from "@/components/DisclosureFileList";
+import { getManifestSafe } from "@/lib/appwrite";
 
-const statements = [
-  { year: "2025/26 (2082/83)", size: "3.2 MB" },
-  { year: "2024/25 (2081/82)", size: "2.9 MB" },
-  { year: "2023/24 (2080/81)", size: "3.1 MB" },
-  { year: "2022/23 (2079/80)", size: "2.7 MB" },
-  { year: "2021/22 (2078/79)", size: "2.8 MB" },
-];
+export const dynamic = "force-dynamic";
 
-export default function AnnualFinancialStatementsPage() {
+export default async function AnnualFinancialStatementsPage() {
+  const files = await getManifestSafe("annual-financial-statements");
+
   return (
     <div>
       {/* Hero */}
@@ -34,32 +31,7 @@ export default function AnnualFinancialStatementsPage() {
       {/* Statements List */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            {statements.map((statement) => (
-              <div
-                key={statement.year}
-                className="flex items-center justify-between gap-4 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-primary-200 hover:shadow-md transition-all duration-300"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-6 h-6 text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900">
-                      Fiscal Year {statement.year}
-                    </h3>
-                    <p className="text-sm text-slate-500 flex items-center gap-1 mt-1">
-                      <Calendar className="w-3.5 h-3.5" /> Audited &middot; PDF &middot;{" "}
-                      {statement.size}
-                    </p>
-                  </div>
-                </div>
-                <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-primary text-white text-sm font-semibold shadow hover:shadow-lg hover:scale-105 transition-all flex-shrink-0">
-                  <Download className="w-4 h-4" /> Download
-                </button>
-              </div>
-            ))}
-          </div>
+          <DisclosureFileList category="annual-financial-statements" files={files} />
         </div>
       </section>
     </div>

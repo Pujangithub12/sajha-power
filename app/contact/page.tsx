@@ -85,7 +85,7 @@ export default function ContactPage() {
   };
 
   const inputClass = (field: keyof FormData) =>
-    `w-full px-4 py-3 rounded-xl border bg-white text-slate-900 focus:outline-none focus:ring-2 focus:border-transparent transition-all ${
+    `w-full px-4 py-3 rounded-xl border bg-white text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:border-transparent focus:shadow-md transition-all ${
       errors[field]
         ? "border-red-400 focus:ring-red-400"
         : "border-slate-200 focus:ring-primary-500"
@@ -116,7 +116,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Address</h3>
-                    <p className="text-slate-500 text-sm">Trade Tower, Thapathali, Kathmandu, Nepal</p>
+                    <p className="text-slate-500 text-sm">
+                      5th Floor, Trade Tower, Thapathali, Kathmandu, Nepal
+                    </p>
                   </div>
                 </div>
 
@@ -126,8 +128,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Phone</h3>
-                    <p className="text-slate-500 text-sm">+977-1-4XXXXXX</p>
-                    <p className="text-slate-500 text-sm">+977-1-4XXXXXX</p>
+                    <p className="text-slate-500 text-sm">01-5111015</p>
                   </div>
                 </div>
 
@@ -137,8 +138,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900">Email</h3>
-                    <p className="text-slate-500 text-sm">info@sajhapower.com</p>
-                    <p className="text-slate-500 text-sm">projects@sajhapower.com</p>
+                    <p className="text-slate-500 text-sm">sajhapower@gmail.com</p>
                   </div>
                 </div>
 
@@ -173,7 +173,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-3">
-              <div className="bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100">
+              <div className="bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100 shadow-xl shadow-slate-200/60">
                 {submitted ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">

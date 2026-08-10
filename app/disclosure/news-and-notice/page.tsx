@@ -1,34 +1,11 @@
-import { Megaphone, Calendar, ArrowRight } from "lucide-react";
+import DisclosureFileList from "@/components/DisclosureFileList";
+import { getManifestSafe } from "@/lib/appwrite";
 
-const notices = [
-  {
-    title: "Notice of 26th Annual General Meeting",
-    date: "2026-06-15",
-    tag: "AGM Notice",
-  },
-  {
-    title: "Book Closure Notice for Dividend Distribution",
-    date: "2026-05-02",
-    tag: "Book Closure",
-  },
-  {
-    title: "Commencement of Commercial Operation - Tamor Hydro Project",
-    date: "2026-03-20",
-    tag: "Project Update",
-  },
-  {
-    title: "Notice Regarding Unclaimed Dividends",
-    date: "2026-02-10",
-    tag: "Shareholder Notice",
-  },
-  {
-    title: "Quarterly Financial Results Publication Notice",
-    date: "2026-01-18",
-    tag: "Financial Notice",
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function NewsAndNoticePage() {
+export default async function NewsAndNoticePage() {
+  const files = await getManifestSafe("news-and-notice");
+
   return (
     <div>
       {/* Hero */}
@@ -53,32 +30,7 @@ export default function NewsAndNoticePage() {
       {/* Notices List */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            {notices.map((notice) => (
-              <div
-                key={notice.title}
-                className="group flex items-start justify-between gap-4 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-primary-200 hover:shadow-md transition-all duration-300 cursor-pointer"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
-                    <Megaphone className="w-6 h-6 text-primary-600" />
-                  </div>
-                  <div>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-primary-100 text-primary-700 text-xs font-semibold mb-2">
-                      {notice.tag}
-                    </span>
-                    <h3 className="font-semibold text-slate-900 group-hover:text-primary-600 transition-colors">
-                      {notice.title}
-                    </h3>
-                    <p className="text-sm text-slate-500 flex items-center gap-1 mt-1">
-                      <Calendar className="w-3.5 h-3.5" /> {notice.date}
-                    </p>
-                  </div>
-                </div>
-                <ArrowRight className="w-5 h-5 text-slate-300 group-hover:text-primary-600 group-hover:translate-x-1 transition-all flex-shrink-0 mt-3" />
-              </div>
-            ))}
-          </div>
+          <DisclosureFileList category="news-and-notice" files={files} />
         </div>
       </section>
     </div>

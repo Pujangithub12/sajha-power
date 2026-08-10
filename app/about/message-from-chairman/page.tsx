@@ -1,4 +1,5 @@
-import { Quote, User } from "lucide-react";
+import Image from "next/image";
+import { Quote } from "lucide-react";
 
 export default function MessageFromChairmanPage() {
   return (
@@ -28,11 +29,17 @@ export default function MessageFromChairmanPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12 items-start">
             <div className="md:col-span-1">
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center border border-slate-100 mb-4">
-                <User className="w-20 h-20 text-primary-400" />
+              <div className="relative aspect-[5/7] rounded-3xl overflow-hidden border border-slate-100 mb-4">
+                <Image
+                  src="/board of directors/kuber-mani-nepal.jpg"
+                  alt="Kuber Mani Nepal, Chairman of Sajha Power Company Limited"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Chairman</h3>
-              <p className="text-sm text-slate-500">Sajha Power Company Limited</p>
+              <h3 className="text-lg font-bold text-slate-900">Kuber Mani Nepal</h3>
+              <p className="text-sm text-slate-500">Chairman, Sajha Power Company Limited</p>
             </div>
             <div className="md:col-span-2">
               <Quote className="w-10 h-10 text-primary-200 mb-4" />
@@ -56,8 +63,8 @@ export default function MessageFromChairmanPage() {
                 our employees, partners, and shareholders for their continued trust as we power
                 the future together.
               </p>
-              <p className="text-slate-900 font-semibold">Chairman</p>
-              <p className="text-slate-500 text-sm">Sajha Power Company Limited</p>
+              <p className="text-slate-900 font-semibold">Kuber Mani Nepal</p>
+              <p className="text-slate-500 text-sm">Chairman, Sajha Power Company Limited</p>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Zap, Calendar, CheckCircle2, Clock, ArrowRight, Filter } from "lucide-react";
+import { MapPin, Calendar, CheckCircle2, Filter } from "lucide-react";
 
 const categories = ["All", "Operational", "Under Construction", "Upcoming"];
 
@@ -123,30 +123,6 @@ export default function ProjectsPage() {
             From micro-hydro to mega-projects, explore our diverse portfolio of hydro power plants, 
             transmission lines, and substations across South Asia.
           </p>
-        </div>
-      </section>
-
-      {/* Stats Banner */}
-      <section className="py-12 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600">500+</div>
-              <div className="text-sm text-slate-500 mt-1">Total MW</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-secondary-600">50+</div>
-              <div className="text-sm text-slate-500 mt-1">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-amber-600">3</div>
-              <div className="text-sm text-slate-500 mt-1">Countries</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-600">2.5M</div>
-              <div className="text-sm text-slate-500 mt-1">Tons CO₂ Saved</div>
-            </div>
-          </div>
         </div>
       </section>
 

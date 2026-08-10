@@ -1,6 +1,8 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Zap,
@@ -12,6 +14,8 @@ import {
   Globe,
   Wrench,
 } from "lucide-react";
+
+const heroImages = ["/sajha-project-image.png", "/sajha-project-image (2).png"];
 
 const services = [
   {
@@ -87,22 +91,34 @@ const projects = [
 ];
 
 export default function HomePage() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Pattern */}
+        {/* Background Image Slider */}
         <div className="absolute inset-0 bg-dark-900">
-          <div className="absolute inset-0 opacity-20">
-            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <defs>
-                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-primary-500" />
-                </pattern>
-              </defs>
-              <rect width="100" height="100" fill="url(#grid)" />
-            </svg>
-          </div>
+          {heroImages.map((src, index) => (
+            <Image
+              key={src}
+              src={src}
+              alt="Sajha Power project site"
+              fill
+              priority={index === 0}
+              className={`object-cover transition-opacity duration-1000 ease-in-out ${
+                index === activeSlide ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-dark-900/70" />
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-600/20 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-600/20 rounded-full blur-3xl" />
         </div>
@@ -118,7 +134,7 @@ export default function HomePage() {
               <span className="text-gradient">Water</span> for a{" "}
               <span className="text-gradient">Brighter Tomorrow</span>
             </h1>
-            <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg text-white mb-8 max-w-xl mx-auto leading-relaxed">
               Sajha Power Company Limited is Nepal&apos;s premier hydro power and energy infrastructure developer,
               delivering sustainable electricity solutions through cutting-edge technology and engineering excellence.
             </p>
@@ -138,6 +154,20 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+          {heroImages.map((src, index) => (
+            <button
+              key={src}
+              onClick={() => setActiveSlide(index)}
+              aria-label={`Show slide ${index + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                index === activeSlide ? "w-6 bg-primary-500" : "w-1.5 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          ))}
         </div>
 
         {/* Scroll Indicator */}
@@ -192,60 +222,34 @@ export default function HomePage() {
 
       {/* Why Choose Us */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold mb-4">
-                Why Sajha Power
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Engineering Excellence Meets Environmental Stewardship
-              </h2>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                We combine decades of hydro power expertise with a deep commitment to sustainable development, 
-                ensuring every project benefits both communities and the environment.
-              </p>
-              <div className="space-y-6">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
-                      <feature.icon className="w-6 h-6 text-primary-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-1">
-                        {feature.title}
-                      </h3>
-                      <p className="text-slate-500 text-sm leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold mb-4">
+              Why Sajha Power
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              Engineering Excellence Meets Environmental Stewardship
+            </h2>
+            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              We combine decades of hydro power expertise with a deep commitment to sustainable development,
+              ensuring every project benefits both communities and the environment.
+            </p>
+            <div className="space-y-6">
+              {features.map((feature, index) => (
+                <div key={index} className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-6 h-6 text-primary-600" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-secondary-200 rounded-3xl rotate-3" />
-              <div className="relative bg-slate-100 rounded-3xl p-8 border border-slate-200">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">15+</div>
-                    <div className="text-sm text-slate-500">Active Projects</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <div className="text-3xl font-bold text-secondary-600 mb-1">3</div>
-                    <div className="text-sm text-slate-500">Countries</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <div className="text-3xl font-bold text-amber-600 mb-1">98%</div>
-                    <div className="text-sm text-slate-500">Client Satisfaction</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <div className="text-3xl font-bold text-rose-600 mb-1">ISO</div>
-                    <div className="text-sm text-slate-500">Certified</div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-1">
+                      {feature.title}
+                    </h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

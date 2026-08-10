@@ -1,15 +1,11 @@
-import { FileText, Download, Calendar } from "lucide-react";
+import DisclosureFileList from "@/components/DisclosureFileList";
+import { getManifestSafe } from "@/lib/appwrite";
 
-const statements = [
-  { quarter: "Q2, FY 2082/83", period: "Ashwin - Poush 2082", size: "1.4 MB" },
-  { quarter: "Q1, FY 2082/83", period: "Shrawan - Ashwin 2082", size: "1.3 MB" },
-  { quarter: "Q4, FY 2081/82", period: "Chaitra - Ashadh 2082", size: "1.5 MB" },
-  { quarter: "Q3, FY 2081/82", period: "Poush - Chaitra 2081", size: "1.4 MB" },
-  { quarter: "Q2, FY 2081/82", period: "Ashwin - Poush 2081", size: "1.3 MB" },
-  { quarter: "Q1, FY 2081/82", period: "Shrawan - Ashwin 2081", size: "1.2 MB" },
-];
+export const dynamic = "force-dynamic";
 
-export default function QuarterlyFinancialStatementsPage() {
+export default async function QuarterlyFinancialStatementsPage() {
+  const files = await getManifestSafe("quarterly-financial-statements");
+
   return (
     <div>
       {/* Hero */}
@@ -34,30 +30,12 @@ export default function QuarterlyFinancialStatementsPage() {
       {/* Statements List */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            {statements.map((statement) => (
-              <div
-                key={statement.quarter}
-                className="flex items-center justify-between gap-4 bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-secondary-200 hover:shadow-md transition-all duration-300"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-secondary-50 flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-6 h-6 text-secondary-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900">{statement.quarter}</h3>
-                    <p className="text-sm text-slate-500 flex items-center gap-1 mt-1">
-                      <Calendar className="w-3.5 h-3.5" /> {statement.period} &middot; PDF &middot;{" "}
-                      {statement.size}
-                    </p>
-                  </div>
-                </div>
-                <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-primary text-white text-sm font-semibold shadow hover:shadow-lg hover:scale-105 transition-all flex-shrink-0">
-                  <Download className="w-4 h-4" /> Download
-                </button>
-              </div>
-            ))}
-          </div>
+          <DisclosureFileList
+            category="quarterly-financial-statements"
+            files={files}
+            accentText="text-secondary-600"
+            accentBg="bg-secondary-50"
+          />
         </div>
       </section>
     </div>

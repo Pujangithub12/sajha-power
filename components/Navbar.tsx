@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Zap, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, LogIn } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -17,6 +18,7 @@ const navLinks = [
   },
   { name: "Services", href: "/services" },
   { name: "Projects", href: "/projects" },
+  { name: "Gallery", href: "/gallery" },
   {
     name: "Disclosure",
     children: [
@@ -42,6 +44,14 @@ export default function Navbar() {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setOpenDropdown(null);
+    setOpenMobileDropdown(null);
+    setIsOpen(false);
+  }
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -52,20 +62,21 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    setOpenDropdown(null);
-    setOpenMobileDropdown(null);
-    setIsOpen(false);
-  }, [pathname]);
-
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center shadow-lg group-hover:shadow-primary-500/30 transition-shadow">
-              <Zap className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 overflow-hidden flex items-center justify-center">
+              <Image
+                src="/sajha-logo.png"
+                alt="Sajha Power logo"
+                width={56}
+                height={56}
+                priority
+                className="w-14 h-14 object-contain scale-125"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold text-slate-900 leading-tight">
@@ -138,6 +149,16 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/admin/disclosure"
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                pathname === "/admin/disclosure"
+                  ? "text-primary-700 bg-primary-50"
+                  : "text-slate-600 hover:text-primary-600 hover:bg-slate-100"
+              }`}
+            >
+              <LogIn className="w-4 h-4" /> Login
+            </Link>
             <Link
               href="/contact"
               className="ml-2 px-5 py-2.5 rounded-lg bg-gradient-primary text-white text-sm font-semibold shadow-lg shadow-primary-600/20 hover:shadow-primary-600/40 hover:scale-105 transition-all duration-200"
@@ -220,6 +241,17 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/admin/disclosure"
+              onClick={() => setIsOpen(false)}
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                pathname === "/admin/disclosure"
+                  ? "text-primary-700 bg-primary-50"
+                  : "text-slate-600 hover:text-primary-600 hover:bg-slate-50"
+              }`}
+            >
+              <LogIn className="w-4 h-4" /> Login
+            </Link>
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
