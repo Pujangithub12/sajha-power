@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  Droplets,
-  Zap,
-  Wrench,
-  BarChart3,
-  CheckCircle2,
-  FileText,
-  HardHat,
-  Settings,
-} from "lucide-react";
+import { Droplets, Zap, Wrench, BarChart3, CheckCircle2 } from "lucide-react";
 
 const mainServices = [
   {
@@ -79,30 +70,6 @@ const mainServices = [
     color: "from-rose-500 to-red-700",
     bgColor: "bg-rose-50",
     textColor: "text-rose-600",
-  },
-];
-
-const additionalServices = [
-  {
-    icon: FileText,
-    title: "Permitting & Licensing",
-    desc: "Complete documentation and regulatory approval support for energy projects.",
-    color: "from-primary-500 to-primary-700",
-    textColor: "text-primary-600",
-  },
-  {
-    icon: HardHat,
-    title: "O&M Services",
-    desc: "Long-term operation and maintenance contracts ensuring optimal plant performance.",
-    color: "from-secondary-500 to-secondary-700",
-    textColor: "text-secondary-600",
-  },
-  {
-    icon: Settings,
-    title: "Rehabilitation",
-    desc: "Upgrading and modernizing existing hydro power plants for improved efficiency.",
-    color: "from-amber-500 to-orange-700",
-    textColor: "text-amber-600",
   },
 ];
 
@@ -200,47 +167,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Additional Services */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary-100 text-primary-700 text-sm font-semibold mb-4">
-              Additional Services
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              More Ways We Can Help
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Beyond our core offerings, we provide specialized services to support your energy projects.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {additionalServices.map((service, index) => (
-              <div
-                key={index}
-                className="relative bg-white rounded-2xl p-8 pt-10 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
-              >
-                <div
-                  className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${service.color}`}
-                />
-                <span
-                  className={`absolute top-6 right-6 text-4xl font-extrabold ${service.textColor} opacity-10 group-hover:opacity-20 transition-opacity`}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}
-                >
-                  <service.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

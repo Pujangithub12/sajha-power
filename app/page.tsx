@@ -156,20 +156,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-          {heroImages.map((src, index) => (
-            <button
-              key={src}
-              onClick={() => setActiveSlide(index)}
-              aria-label={`Show slide ${index + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                index === activeSlide ? "w-6 bg-primary-500" : "w-1.5 bg-white/30 hover:bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
-
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2">

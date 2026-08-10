@@ -7,14 +7,14 @@ import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 const galleryImages = [
   { src: "/sajha-project-image.png", caption: "Tunnel excavation works" },
   { src: "/sajha-project-image (2).png", caption: "Tunnel portal construction site" },
-  { src: "/sajha-projects.jpg", caption: "Project site office and housing facility" },
+  { src: "/sajha-projects.jpg", caption: "Army camp facility" },
   { src: "/sajha-projects2.jpg", caption: "Riverbed excavation works" },
   { src: "/sajha-projects3.jpg", caption: "Reinforcement works at the dam structure" },
   { src: "/sajha-projects4.jpg", caption: "Tunnel portal interior" },
   { src: "/sajha-projects5.jpg", caption: "Company event and public program" },
   { src: "/sajha-projects6.jpg", caption: "Riverside reinforcement works" },
   { src: "/sajha-projects7.jpg", caption: "Concrete pouring works at project site" },
-  { src: "/sajha-projects8.jpg", caption: "Aerial view of project facility" },
+  { src: "/sajha-projects8.jpg", caption: "Ariel view of army camp facility" },
 ];
 
 export default function GalleryPage() {

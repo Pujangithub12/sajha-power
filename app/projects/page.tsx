@@ -1,10 +1,4 @@
-
-"use client";
-
-import { useState } from "react";
-import { MapPin, Calendar, CheckCircle2, Filter } from "lucide-react";
-
-const categories = ["All", "Operational", "Under Construction", "Upcoming"];
+import { MapPin, Calendar, CheckCircle2 } from "lucide-react";
 
 const projects = [
   {
@@ -98,13 +92,6 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.status === activeCategory);
-
   return (
     <div>
       {/* Hero */}
@@ -126,29 +113,12 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Filter & Projects */}
+      {/* Projects */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                  activeCategory === category
-                    ? "bg-gradient-primary text-white shadow-lg shadow-primary-600/20"
-                    : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <div
                 key={index}
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300"
@@ -207,80 +177,9 @@ export default function ProjectsPage() {
               </div>
             ))}
           </div>
-
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-20">
-              <Filter className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-              <p className="text-slate-500">No projects found in this category.</p>
-            </div>
-          )}
         </div>
       </section>
 
-      {/* Impact Section */}
-      <section className="py-24 bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 text-sm font-semibold mb-6">
-                Our Impact
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Transforming Communities Through Clean Energy
-              </h2>
-              <p className="text-slate-400 leading-relaxed mb-8">
-                Every project we complete brings light to homes, powers industries, and reduces carbon emissions. 
-                Our work has directly impacted millions of lives across Nepal and the region.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-dark-800 rounded-xl p-6 border border-slate-700">
-                  <div className="text-3xl font-bold text-primary-400 mb-1">5M+</div>
-                  <div className="text-sm text-slate-400">People Served</div>
-                </div>
-                <div className="bg-dark-800 rounded-xl p-6 border border-slate-700">
-                  <div className="text-3xl font-bold text-secondary-400 mb-1">15K+</div>
-                  <div className="text-sm text-slate-400">Jobs Created</div>
-                </div>
-                <div className="bg-dark-800 rounded-xl p-6 border border-slate-700">
-                  <div className="text-3xl font-bold text-amber-400 mb-1">120+</div>
-                  <div className="text-sm text-slate-400">Villages Electrified</div>
-                </div>
-                <div className="bg-dark-800 rounded-xl p-6 border border-slate-700">
-                  <div className="text-3xl font-bold text-emerald-400 mb-1">$2B+</div>
-                  <div className="text-sm text-slate-400">Investment Mobilized</div>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-3xl rotate-3" />
-              <div className="relative bg-dark-800 rounded-3xl p-8 border border-slate-700">
-                <h3 className="text-xl font-bold text-white mb-6">Project Distribution</h3>
-                <div className="space-y-4">
-                  {[
-                    { label: "Run-of-River", value: 65, color: "bg-primary-500" },
-                    { label: "Reservoir/Storage", value: 20, color: "bg-secondary-500" },
-                    { label: "Transmission", value: 10, color: "bg-amber-500" },
-                    { label: "Substation", value: 5, color: "bg-emerald-500" },
-                  ].map((item, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between text-sm mb-2">
-                        <span className="text-slate-300">{item.label}</span>
-                        <span className="text-slate-400">{item.value}%</span>
-                      </div>
-                      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full ${item.color} rounded-full transition-all duration-1000`}
-                          style={{ width: `${item.value}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

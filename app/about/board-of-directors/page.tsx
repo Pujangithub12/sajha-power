@@ -1,11 +1,12 @@
 import Image from "next/image";
 
-const board = [
-  {
-    name: "Kuber Mani Nepal",
-    role: "Chairman",
-    image: "/board of directors/kuber-mani-nepal.jpg",
-  },
+const chairman = {
+  name: "Kuber Mani Nepal",
+  role: "Chairman",
+  image: "/board of directors/kuber-mani-nepal.jpg",
+};
+
+const directors = [
   {
     name: "Ramesh Prasad Neupane",
     role: "Director",
@@ -49,8 +50,26 @@ export default function BoardOfDirectorsPage() {
       {/* Board Grid */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Chairman */}
+          <div className="flex justify-center mb-12">
+            <div className="bg-slate-50 rounded-2xl p-10 border border-primary-100 hover:shadow-lg transition-all duration-300 text-center group w-full max-w-xs">
+              <div className="relative w-32 h-32 rounded-full overflow-hidden mx-auto mb-5 border-4 border-primary-100 group-hover:scale-105 transition-transform">
+                <Image
+                  src={chairman.image}
+                  alt={chairman.name}
+                  fill
+                  className="object-cover"
+                  sizes="128px"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-1">{chairman.name}</h3>
+              <p className="text-sm text-primary-600 font-semibold">{chairman.role}</p>
+            </div>
+          </div>
+
+          {/* Directors */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {board.map((member, index) => (
+            {directors.map((member, index) => (
               <div
                 key={index}
                 className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg hover:border-primary-200 transition-all duration-300 text-center group"
